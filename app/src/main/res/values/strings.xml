@@ -1,0 +1,31 @@
+<resources>
+    <string name="app_name">Estacionamiento</string>
+
+    <!-- Home / RecyclerView -->
+    <string name="placa">Placa</string>
+    <string name="tipo_auto">Tipo de auto</string>
+    <string name="estatus">Estatus</string>
+    <string name="hora_ingreso">Hora de ingreso</string>
+    <string name="tarifa">Tarifa</string>
+
+    <!-- Autos Detail -->
+    <string name="tipo_pago">Tipo de pago </string>
+    <string name="fecha_ingreso">Fecha de ingreso</string>
+    <string name="hora_salida">Hora de salida</string>
+    <string name="titutlo_detalles">Detalles del auto</string>
+    <string name="monto">Monto a pagar</string>
+
+    <!-- Add -->
+    <string name="oficial_auto">Oficial</string>
+    <string name="residente_auto">Residente</string>
+    <string name="no_residente_auto">No residente</string>
+
+    <!-- Error -->
+    <string name="error_guardado">Error al guardar auto</string>
+
+    <!-- Buttons -->
+    <string name="add_auto">Agregar</string>
+    <string name="close">Cerrar</string>
+    <string name="exit_auto">Salida de auto</string>
+    <string name="enter_auto">Entrada de auto</string>
+</resources>
