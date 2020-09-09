@@ -28,4 +28,8 @@
     <string name="close">Cerrar</string>
     <string name="exit_auto">Salida de auto</string>
     <string name="enter_auto">Entrada de auto</string>
+
+    <!-- Message -->
+    <string name="mensaje_pago">El monto a pagar es</string>
+    <string name="mensaje_auto_oficial">Puedes salir, no es necesario realizar un pago.</string>
 </resources>

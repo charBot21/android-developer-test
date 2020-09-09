@@ -10,9 +10,10 @@ import com.cha.estacionamiento.databinding.ActivityDetailBinding
 import com.cha.estacionamiento.model.interfaces.DetailListener
 import com.cha.estacionamiento.ui.utils.getDateEnter
 import com.cha.estacionamiento.ui.utils.getHour
+import com.cha.estacionamiento.ui.utils.toast
 import com.cha.estacionamiento.ui.viewmodel.DetailViewModel
 import kotlinx.android.synthetic.main.activity_detail.*
-import kotlinx.android.synthetic.main.recyclerview_autos.*
+import java.text.SimpleDateFormat
 
 class DetailActivity : AppCompatActivity(), DetailListener {
 
@@ -27,6 +28,7 @@ class DetailActivity : AppCompatActivity(), DetailListener {
     private var tarifaR: String ?= null
     private var fechaIngresoR: String ?= null
     private var statusR: String ?= null
+    private var montoPago: Double ?= null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -52,8 +54,8 @@ class DetailActivity : AppCompatActivity(), DetailListener {
         tv_detail_tarifa.text = getString(R.string.tarifa) + ": " + tarifaR
         tv_detail_fecha_ingreso.text = getString(R.string.fecha_ingreso) + ": " + fechaIngresoR
         tv_detail_status.text = getString(R.string.estatus) + ": " + statusR
-        tv_detail_monto.text = getString(R.string.monto) + ": " 
 
+        makeCalculo()
 
         if ( statusR == "A" ) {
             btn_auto_exit.text = getString(R.string.exit_auto)
@@ -62,7 +64,21 @@ class DetailActivity : AppCompatActivity(), DetailListener {
         }
     }
 
+    private fun makeCalculo() {
+
+        val sdf = SimpleDateFormat("HH:mm")
+        val start = sdf.parse(horaIngresoR)
+        val end = sdf.parse(getHour())
+
+        var dif = (end.time - start.time) / 1000
+
+        montoPago = dif * tarifaR.toString().toDouble()
+
+        tv_detail_monto.text = getString(R.string.monto) + ": " + montoPago
+    }
+
     override fun onSuccess() {
+        val message: String
 
         if ( statusR == "A" ) {
             statusR = "I"
@@ -82,6 +98,18 @@ class DetailActivity : AppCompatActivity(), DetailListener {
         )
 
         viewModel.insert(autos)
+
+        if ( statusR == "I" ) {
+            if ( tipoAutoR == getString(R.string.residente_auto) || tipoAutoR == getString(R.string.no_residente_auto) ) {
+                message = getString(R.string.mensaje_pago) + ": $" + montoPago + " MXN"
+                toast(message)
+            } else {
+                message = getString(R.string.mensaje_auto_oficial)
+                toast(message)
+            }
+            montoPago = 0.0
+        }
+
         finish()
     }
 
