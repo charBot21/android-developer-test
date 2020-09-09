@@ -32,4 +32,5 @@
     <!-- Message -->
     <string name="mensaje_pago">El monto a pagar es</string>
     <string name="mensaje_auto_oficial">Puedes salir, no es necesario realizar un pago.</string>
+    <string name="mensaje_residente">Tu pago es mensual. Tu monto actual es</string>
 </resources>
