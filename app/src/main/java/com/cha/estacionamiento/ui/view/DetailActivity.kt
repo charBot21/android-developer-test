@@ -83,6 +83,7 @@ class DetailActivity : AppCompatActivity(), DetailListener {
 
     override fun onSuccess() {
         val message: String
+        val dateCurrent = getDateEnter()
 
         if ( statusR == "A" ) {
             statusR = "I"
@@ -98,21 +99,26 @@ class DetailActivity : AppCompatActivity(), DetailListener {
             statusR.toString(),
             horaIngresoR.toString(),
             fechaIngresoR.toString(),
+            dateCurrent,
             tarifaR.toString().toDouble()
         )
 
         viewModel.insert(autos)
 
         if ( statusR == "I" ) {
-            if ( tipoAutoR == getString(R.string.no_residente_auto) ) {
-                message = getString(R.string.mensaje_pago) + ": $" + montoPago + " MXN"
-                toast(message)
-            } else if ( tipoAutoR == getString(R.string.residente_auto) ) {
-                message = getString(R.string.mensaje_residente)
-                toast(message)
-            } else {
-                message = getString(R.string.mensaje_auto_oficial)
-                toast(message)
+            when (tipoAutoR) {
+                getString(R.string.no_residente_auto) -> {
+                    message = getString(R.string.mensaje_pago) + ": $" + montoPago + " MXN"
+                    toast(message)
+                }
+                getString(R.string.residente_auto) -> {
+                    message = getString(R.string.mensaje_residente)
+                    toast(message)
+                }
+                else -> {
+                    message = getString(R.string.mensaje_auto_oficial)
+                    toast(message)
+                }
             }
             montoPago = 0.0
         }

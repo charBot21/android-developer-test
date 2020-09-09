@@ -41,6 +41,7 @@ class AddActivity : AppCompatActivity(), AddAutoListener {
             status,
             hora,
             fechaIngreso,
+            "",
             tarifa.toString().toDouble()
         )
 

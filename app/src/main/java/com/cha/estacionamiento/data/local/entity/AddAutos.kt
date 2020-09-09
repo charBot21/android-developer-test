@@ -17,6 +17,8 @@ data class AddAutos (
     val horaIngreso: String,
     @ColumnInfo(name = "fecha_ingreso")
     val fechaIngreso: String,
+    @ColumnInfo(name = "fecha_salida")
+    val fechaSalida: String,
     @ColumnInfo(name = "tarifa_auto")
     val tarifaAuto: Double
 )
