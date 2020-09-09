@@ -72,7 +72,11 @@ class DetailActivity : AppCompatActivity(), DetailListener {
 
         var dif = (end.time - start.time) / 1000
 
-        montoPago = dif * tarifaR.toString().toDouble()
+        if ( statusR != "I" ) {
+            montoPago = dif * tarifaR.toString().toDouble()
+        } else {
+            montoPago = 0.0
+        }
 
         tv_detail_monto.text = getString(R.string.monto) + ": " + montoPago
     }
